@@ -16,9 +16,8 @@ namespace NumberGuesser
             string userWantsToContinue;
             int correctNumber;
 
-            GetAppInfo();
-
-            Greeting();
+            GetAppInfo(); // Print the program info to cmd
+            GreetUser(); // Ask users name and wish luck
 
             while (true)
             {
@@ -36,10 +35,7 @@ namespace NumberGuesser
                     // Validate user input
                     if (!int.TryParse(input, out userGuess))
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Please enter a number");
-                        Console.ResetColor();
-
+                        PrintColorMsg(ConsoleColor.Red, "Please enter a number"); // Print error msg
                         continue;
                     }
 
@@ -49,16 +45,12 @@ namespace NumberGuesser
                     // Match guess to correct number
                     if (userGuess != correctNumber)
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Wrong number, please try again");
-                        Console.ResetColor();
+                        PrintColorMsg(ConsoleColor.Yellow, "Wrong number.  Please try again");
                     }
                 }
 
                 // Output success message
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("You are CORRECT!!!");
-                Console.ResetColor();
+                PrintColorMsg(ConsoleColor.DarkGreen, "You are CORRECT!!!");
 
                 // Ask to play again
                 Console.WriteLine("Play again? [Y or N]");
@@ -87,20 +79,25 @@ namespace NumberGuesser
             string appAuthor = "Angelo Bovino";
             string authorHomepage = "https://angelobovino.me";
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{appName}: Version {appVersion} by {appAuthor} {authorHomepage}");
-            Console.ResetColor();
+            PrintColorMsg(ConsoleColor.Green, $"{appName}: Version {appVersion} by {appAuthor} {authorHomepage}");
         }
 
-        // Get the users name and wish them luck
-        static void Greeting()
+        // Ask users name and wish them luck
+        static void GreetUser()
         {
             string userName;
 
-            // Get users name
             Console.Write("Enter your name: ");
             userName = Console.ReadLine();
             Console.WriteLine($"Good luck, {userName}!");
+        }
+
+        // Print color message
+        static void PrintColorMsg(ConsoleColor color, string msg)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(msg);
+            Console.ResetColor();
         }
     }
 }
