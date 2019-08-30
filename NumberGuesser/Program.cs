@@ -12,7 +12,6 @@ namespace NumberGuesser
         {
             Random random = new Random();
             int userGuess = 0;
-            
             string userWantsToContinue;
             int correctNumber;
 
