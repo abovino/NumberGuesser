@@ -11,26 +11,14 @@ namespace NumberGuesser
         static void Main(string[] args)
         {
             Random random = new Random();
-            string appName = "Number Guesser";
-            string appVersion = "1.0.0";
-            string appAuthor = "Angelo Bovino";
-            string authorHomepage = "https://angelobovino.me";
             int userGuess = 0;
-            string userName;
+            
             string userWantsToContinue;
             int correctNumber;
 
-            Console.ForegroundColor = ConsoleColor.Green;
+            GetAppInfo();
 
-            Console.WriteLine($"{appName}: Version {appVersion} by {appAuthor} {authorHomepage}");
-
-            Console.ResetColor();
-
-            // Get users name
-            Console.Write("Enter your name: ");
-            userName = Console.ReadLine();
-
-            Console.WriteLine($"Good luck, {userName}!");
+            Greeting();
 
             while (true)
             {
@@ -89,6 +77,30 @@ namespace NumberGuesser
                     return;
                 }
             }
+        }
+
+        // Prints program info to the console
+        static void GetAppInfo()
+        {
+            string appName = "Number Guesser";
+            string appVersion = "1.0.0";
+            string appAuthor = "Angelo Bovino";
+            string authorHomepage = "https://angelobovino.me";
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{appName}: Version {appVersion} by {appAuthor} {authorHomepage}");
+            Console.ResetColor();
+        }
+
+        // Get the users name and wish them luck
+        static void Greeting()
+        {
+            string userName;
+
+            // Get users name
+            Console.Write("Enter your name: ");
+            userName = Console.ReadLine();
+            Console.WriteLine($"Good luck, {userName}!");
         }
     }
 }
